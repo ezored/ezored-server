@@ -27,4 +27,6 @@ class TargetConan(ConanFile):
         self.copy("*.dll", dst="bin", keep_path=False)
 
     def requirements(self):
-        pass
+        self.requires('rapidjson/1.1.0@bincrafters/stable')
+        self.requires('Poco/1.9.0@pocoproject/stable')
+        self.requires('OpenSSL/1.0.2r@conan/stable')

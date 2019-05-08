@@ -1,4 +1,5 @@
 #include "WebHelper.hpp"
+#include "Poco/URI.h"
 
 namespace ezored
 {
@@ -28,6 +29,18 @@ const std::map<std::string, std::string> WebHelper::getMimeMap()
     extMap.insert(std::make_pair("pdf", "application/pdf"));
 
     return extMap;
+}
+
+bool WebHelper::matchRoute(Poco::Net::HTTPServerRequest &req, std::string route)
+{
+    Poco::URI uri = Poco::URI(req.getURI());
+
+    if (uri.getPath() == route)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 } // namespace helpers

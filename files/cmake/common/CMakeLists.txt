@@ -13,6 +13,7 @@ file(GLOB H_FILES_PROJECT_FACTORIES "${PROJECT_ROOT_PATH}/projects/server/src/ez
 file(GLOB H_FILES_PROJECT_HANDLERS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/handlers/*.hpp")
 file(GLOB H_FILES_PROJECT_HELPERS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/helpers/*.hpp")
 file(GLOB H_FILES_PROJECT_APPS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/apps/*.hpp")
+file(GLOB H_FILES_PROJECT_CONTROLLERS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/controllers/*.hpp")
 
 # Source files
 file(GLOB S_FILES_PROJECT "${PROJECT_ROOT_PATH}/projects/server/src/*.cpp")
@@ -20,6 +21,7 @@ file(GLOB S_FILES_PROJECT_FACTORIES "${PROJECT_ROOT_PATH}/projects/server/src/ez
 file(GLOB S_FILES_PROJECT_HANDLERS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/handlers/*.cpp")
 file(GLOB S_FILES_PROJECT_HELPERS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/helpers/*.cpp")
 file(GLOB S_FILES_PROJECT_APPS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/apps/*.cpp")
+file(GLOB S_FILES_PROJECT_CONTROLLERS "${PROJECT_ROOT_PATH}/projects/server/src/ezored/server/controllers/*.cpp")
 
 # Merge lists
 set(
@@ -29,6 +31,7 @@ set(
     ${H_FILES_PROJECT_HANDLERS}
     ${H_FILES_PROJECT_HELPERS}
     ${H_FILES_PROJECT_APPS}
+    ${H_FILES_PROJECT_CONTROLLERS}
     CACHE INTERNAL ""
 )
 
@@ -39,6 +42,7 @@ set(
     ${S_FILES_PROJECT_HANDLERS}
     ${S_FILES_PROJECT_HELPERS}
     ${S_FILES_PROJECT_APPS}
+    ${S_FILES_PROJECT_CONTROLLERS}
     CACHE INTERNAL ""
 )
 

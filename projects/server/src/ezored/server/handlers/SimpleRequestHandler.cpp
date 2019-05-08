@@ -1,4 +1,5 @@
 #include "SimpleRequestHandler.hpp"
+#include "ezored/server/controllers/PingController.hpp"
 #include "ezored/server/helpers/WebHelper.hpp"
 
 #include "Poco/Path.h"
@@ -15,8 +16,7 @@ namespace handlers
 {
 
 using namespace ezored::server::helpers;
-
-int SimpleRequestHandler::count = 0;
+using namespace ezored::server::controllers;
 
 SimpleRequestHandler::SimpleRequestHandler()
 {
@@ -30,22 +30,9 @@ void SimpleRequestHandler::handleRequest(Poco::Net::HTTPServerRequest &req, Poco
     {
         sendStaticFile(req, resp);
     }
-    else if (matchRoute(req, "/ping"))
+    else if (WebHelper::matchRoute(req, "/ping"))
     {
-        resp.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
-        resp.setContentType("text/html");
-
-        std::ostream &out = resp.send();
-
-        count = count + 1;
-
-        out << "<h1>Ping</h1>"
-            << "<p>Count: " << count << "</p>"
-            << "<p>Host: " << req.getHost() << "</p>"
-            << "<p>Method: " << req.getMethod() << "</p>"
-            << "<p>URI: " << req.getURI() << "</p>";
-
-        out.flush();
+        PingController::process(req, resp);
     }
     else if (isDefaultRequest(req, resp))
     {
@@ -101,18 +88,6 @@ void SimpleRequestHandler::sendDefaultResponse(Poco::Net::HTTPServerRequest &req
 {
     std::string mimeType = mimeTypeMap["html"];
     resp.sendFile("assets/index.html", mimeType);
-}
-
-bool SimpleRequestHandler::matchRoute(Poco::Net::HTTPServerRequest &req, std::string route)
-{
-    std::string uri = req.getURI();
-
-    if (uri.substr(0, route.size()) == route)
-    {
-        return true;
-    }
-
-    return false;
 }
 
 } // namespace handlers

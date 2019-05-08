@@ -24,10 +24,8 @@ public:
     bool isDefaultRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
     void sendStaticFile(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
     void sendDefaultResponse(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
-    bool matchRoute(Poco::Net::HTTPServerRequest &req, std::string route);
 
 private:
-    static int count;
     std::map<std::string, std::string> mimeTypeMap;
     std::regex regexStaticFiles;
 };

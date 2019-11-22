@@ -1,22 +1,36 @@
-os: linux
-dist: xenial
-language: python
-python: "3.7"
-addons:
-  apt:
-    packages:
-      - gcc-multilib
-      - g++-multilib
-install:
-  - sudo apt-get update
-  - sudo apt-get install -y -f libjack-dev
-  - pip install conan
-before_script:
-  - conan profile new default --detect
-  - conan profile update settings.compiler.libcxx=libstdc++11 default
-  - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-  - python make.py conan install_profiles
-script:
-  - python make.py target linux_app conan
-  - python make.py target linux_app build
-  - python make.py target linux_app package
+jobs:
+  include:
+  - os: linux
+    dist: xenial
+    language: python
+    python: "3.7"
+    addons:
+      apt:
+        packages:
+          - gcc-multilib
+          - g++-multilib
+    install:
+      - sudo apt-get update
+      - pip install conan
+    before_script:
+      - conan profile new default --detect
+      - conan profile update settings.compiler.libcxx=libstdc++11 default
+      - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+      - python make.py conan install_profiles
+    script:
+      - python make.py target linux_app conan
+      - python make.py target linux_app build
+      - python make.py target linux_app package
+  - os: osx
+    osx_image: xcode11.2
+    install:
+      - pip install conan
+    before_script:
+      - conan profile new default --detect
+      - conan profile update settings.compiler.libcxx=libstdc++11 default
+      - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+      - python make.py conan install_profiles
+    script:
+      - python make.py target macos_app conan
+      - python make.py target macos_app build
+      - python make.py target macos_app package

@@ -19,5 +19,3 @@ test_script:
     - python make.py target windows_app conan
     - python make.py target windows_app build
     - python make.py target windows_app package
-    - cd %TRAVIS_BUILD_DIR% && cd dist/windows_app/Release/x86_64/ && Sample
-    - cd %TRAVIS_BUILD_DIR%

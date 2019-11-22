@@ -21,9 +21,6 @@ jobs:
       - python make.py target linux_app conan
       - python make.py target linux_app build
       - python make.py target linux_app package
-      - cd $TRAVIS_BUILD_DIR && cd dist/linux_app/Release/x86/ && ./Sample
-      - cd $TRAVIS_BUILD_DIR && cd dist/linux_app/Release/x86_64/ && ./Sample
-      - cd $TRAVIS_BUILD_DIR
   - os: osx
     osx_image: xcode11.2
     language: generic
@@ -40,5 +37,3 @@ jobs:
       - python make.py target macos_app conan
       - python make.py target macos_app build
       - python make.py target macos_app package
-      - cd $TRAVIS_BUILD_DIR && cd dist/macos_app/Release/x86_64/ && ./Sample
-      - cd $TRAVIS_BUILD_DIR
